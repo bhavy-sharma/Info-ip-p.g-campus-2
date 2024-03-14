@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Webpage</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .logo-animation {
+            animation: bounceInDown 1.5s ease-out;
+        }
+
+        @keyframes bounceInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-200px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <img src="college_logo.png" alt="College Logo" class="logo-animation">
+    </div>
+    <div class="container">
+        <h1>Select Your Year</h1>
+        <button onclick="window.location.href='courses.html?year=1'">1st Year</button>
+        <button onclick="window.location.href='courses.html?year=2'">2nd Year</button>
+        <button onclick="window.location.href='courses.html?year=3'">3rd Year</button>
+    </div>
+</body>
+
+</html>

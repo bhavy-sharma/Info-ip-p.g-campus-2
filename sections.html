@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Your Section</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Select Your Section</h1>
+        <div id="sectionsList">
+            <!-- Section links will be generated here -->
+        </div>
+    </div>
+
+    <script>
+        // Function to get URL parameters
+        function getUrlParams() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const params = {};
+            for (const [key, value] of urlParams) {
+                params[key] = value;
+            }
+            return params;
+        }
+
+        // Function to generate section links
+        function generateSectionLinks() {
+            const params = getUrlParams();
+            const year = params.year;
+            const sections = ['Section A', 'Section B', 'Section C', 'Section D', 'Section E'];
+
+            // Clear existing links
+            const sectionsList = document.getElementById('sectionsList');
+            sectionsList.innerHTML = '';
+
+            // Generate links for sections
+            sections.forEach(section => {
+                const sectionLink = document.createElement('a');
+                sectionLink.href = `rating.html?year=${year}&course=${params.course}&section=${section}`;
+                sectionLink.textContent = section;
+                sectionsList.appendChild(sectionLink);
+            });
+        }
+
+        // Call the function to generate section links when the page loads
+        window.onload = generateSectionLinks;
+    </script>
+</body>
+</html>

@@ -6,6 +6,20 @@
     <title>Rate Your Teacher</title>
     <link rel="stylesheet" href="styles.css">
     <style>
+        .teacher-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .teacher-list li {
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .teacher-list li:hover {
+            color: #007bff;
+        }
+
         .stars {
             display: inline-block;
             font-size: 30px;
@@ -31,49 +45,66 @@
 </head>
 <body>
     <div class="container">
-        <h1>Rate Your Teacher</h1>
-        <form id="ratingForm">
-            <label for="teacherNature">Teacher Nature:</label>
-            <div class="stars">
-                <input type="radio" id="nature5" name="teacherNature" value="5">
-                <label for="nature5">&#9733;</label>
-                <input type="radio" id="nature4" name="teacherNature" value="4">
-                <label for="nature4">&#9733;</label>
-                <input type="radio" id="nature3" name="teacherNature" value="3">
-                <label for="nature3">&#9733;</label>
-                <input type="radio" id="nature2" name="teacherNature" value="2">
-                <label for="nature2">&#9733;</label>
-                <input type="radio" id="nature1" name="teacherNature" value="1">
-                <label for="nature1">&#9733;</label>
-            </div>
-            <label for="teachingStyle">Teaching Style:</label>
-            <div class="stars">
-                <input type="radio" id="style5" name="teachingStyle" value="5">
-                <label for="style5">&#9733;</label>
-                <input type="radio" id="style4" name="teachingStyle" value="4">
-                <label for="style4">&#9733;</label>
-                <input type="radio" id="style3" name="teachingStyle" value="3">
-                <label for="style3">&#9733;</label>
-                <input type="radio" id="style2" name="teachingStyle" value="2">
-                <label for="style2">&#9733;</label>
-                <input type="radio" id="style1" name="teachingStyle" value="1">
-                <label for="style1">&#9733;</label>
-            </div>
-            <!-- Add more rating criteria as needed -->
-            <input type="submit" value="Submit">
-        </form>
+        <h1>Select a Teacher to Rate</h1>
+        <ul class="teacher-list">
+            <li onclick="showRatingForm('Mrs. Richa Dixit')">Mrs. Richa Dixit</li>
+            <li onclick="showRatingForm('Mrs. Renuka Singh')">Mrs. Renuka Singh</li>
+            <li onclick="showRatingForm('Mr. Vineet Kumar')">Mr. Vineet Kumar</li>
+            <li onclick="showRatingForm('Mr. Tarun Singh')">Mr. Tarun Singh</li>
+            <li onclick="showRatingForm('Mr. Punit Singh')">Mr. Punit Singh</li>
+            
+        </ul>
+
+        <div id="ratingFormContainer" style="display: none;">
+            <h2 id="selectedTeacher"></h2>
+            <form id="ratingForm">
+                <label for="teaching">Teaching Style:</label>
+                <div class="stars">
+                    <input type="radio" id="teaching5" name="teaching" value="5">
+                    <label for="teaching5">&#9733;</label>
+                    <input type="radio" id="teaching4" name="teaching" value="4">
+                    <label for="teaching4">&#9733;</label>
+                    <input type="radio" id="teaching3" name="teaching" value="3">
+                    <label for="teaching3">&#9733;</label>
+                    <input type="radio" id="teaching2" name="teaching" value="2">
+                    <label for="teaching2">&#9733;</label>
+                    <input type="radio" id="teaching1" name="teaching" value="1">
+                    <label for="teaching1">&#9733;</label>
+                </div>
+                <label for="behavior">Behavior in Class:</label>
+                <div class="stars">
+                    <input type="radio" id="behavior5" name="behavior" value="5">
+                    <label for="behavior5">&#9733;</label>
+                    <input type="radio" id="behavior4" name="behavior" value="4">
+                    <label for="behavior4">&#9733;</label>
+                    <input type="radio" id="behavior3" name="behavior" value="3">
+                    <label for="behavior3">&#9733;</label>
+                    <input type="radio" id="behavior2" name="behavior" value="2">
+                    <label for="behavior2">&#9733;</label>
+                    <input type="radio" id="behavior1" name="behavior" value="1">
+                    <label for="behavior1">&#9733;</label>
+                </div>
+                <!-- Add more rating criteria as needed -->
+                <input type="submit" value="Submit">
+            </form>
+        </div>
     </div>
 
     <script>
+        function showRatingForm(teacherName) {
+            document.getElementById('selectedTeacher').innerText = 'Rate ' + teacherName;
+            document.getElementById('ratingFormContainer').style.display = 'block';
+        }
+
         const form = document.getElementById('ratingForm');
         form.addEventListener('submit', function(event) {
             event.preventDefault();
-            const teacherNatureRating = this.elements['teacherNature'].value;
-            const teachingStyleRating = this.elements['teachingStyle'].value;
             // Process the ratings as needed (e.g., send them to a server)
-            console.log('Teacher Nature Rating:', teacherNatureRating);
-            console.log('Teaching Style Rating:', teachingStyleRating);
+            const teachingRating = this.elements['teaching'].value;
+            const behaviorRating = this.elements['behavior'].value;
             // You can add further processing here, such as submitting the ratings via AJAX
+            console.log('Teaching Style Rating:', teachingRating);
+            console.log('Behavior Rating:', behaviorRating);
         });
     </script>
 </body>

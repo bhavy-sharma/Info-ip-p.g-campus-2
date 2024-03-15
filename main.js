@@ -14,3 +14,6 @@ form.addEventListener('submit', function(event) {
         input.checked = false;
     });
 });
+
+
+var year = document.getElementsByClassName("thumra-saal");

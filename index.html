@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>College Webpage</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="main.js"></script>
     <style>
         .logo-animation {
             animation: bounceInDown 1.5s ease-out;
@@ -34,10 +35,13 @@
     </div>
     <div class="container">
         <h1>Select Your Year</h1>
-        <button onclick="window.location.href='courses.html?year=1'" value="1">1st Year</button>
-        <button onclick="window.location.href='courses.html?year=2'"value="2">2nd Year</button>
-        <button onclick="window.location.href='courses.html?year=3'"value="3">3rd Year</button>
+        <button onclick="window.location.href='courses.html?year=1'" value="1" class="thumra-saal">1st Year</button>
+        <button onclick="window.location.href='courses.html?year=2'" value="2" class="thumra-saal">2nd Year</button>
+        <button onclick="window.location.href='courses.html?year=3'" value="3" class="thumra-saal">3rd Year</button>
     </div>
+    <script>
+        var year = document.getElementsByClassName('thumra-saal').value;
+    </script>
 </body>
 
 </html>

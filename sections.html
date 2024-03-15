@@ -10,7 +10,7 @@
     <div class="container" style="opacity: 0.9;">
         <h1>Select Your Section</h1>
         <div id="sectionsList">
-            <!-- Section links will be generated here -->
+            <!-- Section buttons will be generated here -->
         </div>
     </div>
 
@@ -25,27 +25,32 @@
             return params;
         }
 
-        // Function to generate section links
-        function generateSectionLinks() {
-            const params = getUrlParams();
-            const year = params.year;
-            const sections = ['Section A', 'Section B', 'Section C', 'Section D', 'Section E'];
+        // Function to generate section buttons
+        function generateSectionButtons() {
+            const sections = ['A', 'B', 'C', 'D', 'E'];
 
-            // Clear existing links
+            // Clear existing buttons
             const sectionsList = document.getElementById('sectionsList');
             sectionsList.innerHTML = '';
 
-            // Generate links for sections
+            // Generate buttons for sections
             sections.forEach(section => {
-                const sectionLink = document.createElement('a');
-                sectionLink.href = `rating.html?year=${year}&course=${params.course}&section=${section}`;
-                sectionLink.textContent = section;
-                sectionsList.appendChild(sectionLink);
+                const sectionButton = document.createElement('button');
+                sectionButton.textContent = `Section ${section}`;
+                sectionButton.value = section; // Set the value attribute
+                sectionButton.onclick = function() {
+                    // Redirect to rating.html with parameters
+                    const params = new URLSearchParams(window.location.search);
+                    const year = params.get('year');
+                    const course = params.get('course');
+                    window.location.href = `rating.html?year=${year}&course=${course}&section=${this.value}`;
+                };
+                sectionsList.appendChild(sectionButton);
             });
         }
 
-        // Call the function to generate section links when the page loads
-        window.onload = generateSectionLinks;
+        // Call the function to generate section buttons when the page loads
+        window.onload = generateSectionButtons;
     </script>
 </body>
 </html>

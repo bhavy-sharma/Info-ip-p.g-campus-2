@@ -52,12 +52,11 @@
             <li onclick="showRatingForm('Mr. Vineet Kumar')">Mr. Vineet Kumar</li>
             <li onclick="showRatingForm('Mr. Tarun Singh')">Mr. Tarun Singh</li>
             <li onclick="showRatingForm('Mr. Punit Singh')">Mr. Punit Singh</li>
-            
         </ul>
 
         <div id="ratingFormContainer" style="display: none;">
             <h2 id="selectedTeacher"></h2>
-            <form id="ratingForm" onsubmit="addTeacherRating(event)">
+            <form id="ratingForm" method="post" name="google-sheet">
                 <label for="teaching">Teaching Style:</label>
                 <div class="stars">
                     <input type="radio" id="teaching5" name="teaching" value="5">
@@ -90,7 +89,40 @@
         </div>
     </div>
 
-    <script src="main.js"></script>
-        <a href="teacher_rankings.html">Teacher Rankings</a>
+    <script>
+        function showRatingForm(teacherName) {
+            document.getElementById('selectedTeacher').innerText = 'Rate ' + teacherName;
+            document.getElementById('ratingFormContainer').style.display = 'block';
+        }
+
+        const form = document.getElementById('ratingForm');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbz1IOvVGdq_01BERc2GNqjLDEMqQPXaUXb8doa7Mt0ebLzEVbESLx4EMHfO2D1H8NMcVA/exec';
+            fetch(scriptURL, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert("Thanks for Contacting us..! We Will Contact You Soon...");
+                } else {
+                    alert("An error occurred. Please try again later.");
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("An error occurred. Please try again later.");
+            });
+
+            // Reset star ratings
+            const starInputs = document.querySelectorAll('.stars input');
+            starInputs.forEach(input => {
+                input.checked = false;
+            });
+        });
+    </script>
 </body>
 </html>

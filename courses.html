@@ -9,18 +9,31 @@
 <body>
     <div class="container" style="opacity: 0.9;">
         <h1>Select Your Course</h1>
-        <a href="sections.html?year=1&course=BCA" value="BCA">BCA</a>
-        <a href="sections.html?year=1&course=BBA" value="BBA">BBA</a>
-        <a href="sections.html?year=1&course=BCom" value="B.COM">B.COM</a>
-        <a href="sections.html?year=1&course=Biotech" value="B.Sc. (Biotechnology)">B.Sc. (Biotechnology)</a>
-        <a href="sections.html?year=1&course=Maths" value="B.Sc. (Bio/Maths)">B.Sc. (Bio/Maths)</a>
-        <a href="sections.html?year=1&course=HomeScience" value="B.Sc. (Home Science)">B.Sc. (Home Science)</a>
-        <a href="sections.html?year=1&course=ComputerScience" value="M.Sc. (Computer Science)">M.Sc. (Computer Science)</a>
-        <a href="sections.html?year=1&course=BiotechMaster" value="M.Sc. (Biotechnology)">M.Sc. (Biotechnology)</a>
-        <a href="sections.html?year=1&course=MCom" value="M.COM">M.COM</a>
-        <a href="sections.html?year=1&course=MEd" value="M.Ed.">M.Ed.</a>
-        <a href="sections.html?year=1&course=BEd" value="B.Ed.">B.Ed.</a>
+        <a href="sections.html?year={{year}}&course=BCA" value="BCA">BCA</a>
+        <a href="sections.html?year={{year}}&course=BBA" value="BBA">BBA</a>
+        <a href="sections.html?year={{year}}&course=BCom" value="B.COM">B.COM</a>
+        <a href="sections.html?year={{year}}&course=Bse-Biotech" value="B.Sc. (Biotechnology)">B.Sc. (Biotechnology)</a>
+        <a href="sections.html?year={{year}}&course=Bse-Bio-Maths" value="B.Sc. (Bio/Maths)">B.Sc. (Bio/Maths)</a>
+        <a href="sections.html?year={{year}}&course=Bse-HomeScience" value="B.Sc. (Home Science)">B.Sc. (Home Science)</a>
+        <a href="sections.html?year={{year}}&course=Mse-ComputerScience" value="M.Sc. (Computer Science)">M.Sc. (Computer Science)</a>
+        <a href="sections.html?year={{year}}&course=Mse-Biotech" value="M.Sc. (Biotechnology)">M.Sc. (Biotechnology)</a>
+        <a href="sections.html?year={{year}}&course=MCom" value="M.COM">M.COM</a>
+        <a href="sections.html?year={{year}}&course=MEd" value="M.Ed.">M.Ed.</a>
+        <a href="sections.html?year={{year}}&course=BEd" value="B.Ed.">B.Ed.</a>
         <!-- Add more courses as needed -->
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    var urlParams = new URLSearchParams(window.location.search);
+    var year = urlParams.get('year');
+    
+    var links = document.querySelectorAll('a[href*="{{year}}"]');
+    links.forEach(function(link) {
+        var href = link.getAttribute('href').replace('{{year}}', year);
+        link.setAttribute('href', href);
+    });
+});
+
+    </script>
 </body>
 </html>

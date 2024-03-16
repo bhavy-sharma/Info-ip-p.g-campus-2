@@ -16,4 +16,3 @@ form.addEventListener('submit', function(event) {
 });
 
 
-var year = document.getElementsByClassName("thumra-saal");
